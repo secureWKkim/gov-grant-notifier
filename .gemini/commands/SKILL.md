@@ -76,6 +76,7 @@ High-level description of the solution without implementation details. 1–2 sen
 - ...
 
 **Technical constraints:**
+example)
 - Platform requirements (web, iOS, Android, both)
 - Auth system constraints
 - Accessibility level (WCAG AA, AAA)
