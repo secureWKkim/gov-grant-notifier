@@ -124,12 +124,3 @@ An ASCII directory tree for the feature's code. Gives AI tools a scaffolding tar
 - **Tradeoff:** [What we gave up and why]
 
 ---
-
-### 8. Rollout & Next Steps
-
-**MVP scope:** The smallest shippable version that validates the core job to be done.
-- Includes: ...
-- Excludes: ...
-
-**Phase 2+ ideas:**
-- ...
