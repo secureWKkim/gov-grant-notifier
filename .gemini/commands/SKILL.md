@@ -87,17 +87,14 @@ High-level description of the solution without implementation details. 1–2 sen
 
 ### 4. Jobs to Be Done (JTBD)
 
-Frame each job as: **"When [situation], I want to [motivation], so I can [expected outcome]."**
-
 Prioritize by frequency and importance. 2–5 jobs max.
 
 | Priority | Job Statement |
 |----------|---------------|
-| 1 | When [situation], I want to [motivation], so I can [expected outcome]. |
-| 2 | When [situation], I want to [motivation], so I can [expected outcome]. |
-| 3 | When [situation], I want to [motivation], so I can [expected outcome]. |
+| 1 |  |
+...
 
-> JTBD gives AI prototyping tools — and your team — the situational context that prevents technically-correct-but-wrong solutions. It answers "why does this feature exist?" before any screen design or API is touched.
+> JTBD gives AI coding agent the functions that it has to implement by the code. 
 
 ---
 
