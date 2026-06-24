@@ -1,4 +1,8 @@
 ---
+trigger: manual
+---
+
+---
 description: Generate a structured, AI-prototyping-ready PRD with JTBD framework, user stories, component inventory, data models, API specs, and acceptance criteria. Use when starting a new product feature or planning a build.
 argument-hint: "[feature or project name]"
 ---
