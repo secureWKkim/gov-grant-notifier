@@ -5,3 +5,4 @@ pytest-asyncio
 pytest-mock
 pytest-httpx
 python-dotenv
+selectolax
