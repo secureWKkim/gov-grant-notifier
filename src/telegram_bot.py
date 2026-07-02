@@ -5,7 +5,7 @@ def format_announcement(announcement: dict) -> str:
     return (
         f"[{announcement['field']}] {announcement['title']}\n"
         f"기관: {announcement['inst']}\n"
-        f"마감: {announcement['deadline']}\n"
+        f"마감: {announcement.get('deadline', '미기재')}\n"
         f"{announcement['url']}"
     )
 
