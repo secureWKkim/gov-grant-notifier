@@ -21,9 +21,9 @@ async def scrape_iris(yesterday: date) -> list[dict]:
         results = []
         while True:
             html = await page.content()
-            items = filter_by_date(parse_iris(html), yesterday)
-            results.extend(items)
             all_items = parse_iris(html)
+            items = filter_by_date(all_items, yesterday)
+            results.extend(items)
             if not all_items or all_items[-1]["date"] < yesterday.strftime("%Y-%m-%d"):
                 break
             next_btn = page.locator(".paginate .page_next")
