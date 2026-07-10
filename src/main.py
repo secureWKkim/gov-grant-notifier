@@ -29,7 +29,15 @@ async def scrape_iris(yesterday: date) -> list[dict]:
             next_btn = page.locator(".paginate .page_next")
             if await next_btn.count() == 0:
                 break
+            # click()은 Chromium 프로세스에 클릭 명령을 보내고(IPC 통신), 클릭 동작 자체가
+            # 완료되면 반환된다. 단, 클릭으로 인해 실행되는 JavaScript AJAX 요청은 아직
+            # 시작도 안 된 상태일 수 있으므로, 이 줄만으로는 다음 페이지 데이터가 준비됐다고
+            # 볼 수 없다.
             await next_btn.click()
+            # 클릭 후 JavaScript가 서버에 AJAX 요청을 보내고 응답을 받아 DOM을 업데이트하는
+            # 과정이 끝날 때까지 기다린다. "networkidle"은 네트워크 요청이 500ms 동안 하나도
+            # 없으면 완료로 판단하는 기준이다. 이 줄이 없으면 AJAX가 채 끝나기 전에
+            # page.content()를 호출해 이전 페이지 HTML을 읽어버리는 버그가 생긴다.
             await page.wait_for_load_state("networkidle")
         await browser.close()
     return results
