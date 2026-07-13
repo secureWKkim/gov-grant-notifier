@@ -1,8 +1,6 @@
-from datetime import datetime, timezone, timedelta, date
-
 import pytest
 
-from src.main import run, get_yesterday_kst
+from src.main import run
 
 
 ITEM_IRIS = {
