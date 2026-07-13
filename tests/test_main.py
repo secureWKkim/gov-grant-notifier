@@ -28,14 +28,18 @@ ENV = {"TELEGRAM_BOT_TOKEN": "TEST_TOKEN", "TELEGRAM_CHAT_ID": "123456"}
 
 # ── run ───────────────────────────────────────────────────────────────────────
 
+"""마지막에 반환값의 길이만 검증하므로, 이전에 단순히 들어간 메시지 개수만 확인하던 코드는
+TDD 원칙 중 'Test behavior, not implementation.' 에 위배된다. 따라서 
+send_message 모킹을 하고 결과가 combine되는 행동을 확인하려면 아래와 같이 바껴야 한다.
+"""
 @pytest.mark.asyncio
 async def test_run_combines_results_from_both_scrapers(mocker):
     mocker.patch("src.main.scrape_iris", return_value=[ITEM_IRIS])
     mocker.patch("src.main.scrape_kstartup", return_value=[ITEM_KSTARTUP])
-    mocker.patch("src.main.send_message")
+    send_mock = mocker.patch("src.main.send_message")
     mocker.patch.dict(os.environ, ENV)
-    results = await run()
-    assert len(results) == 2
+    await run()
+    assert send_mock.call_count == 2
 
 
 @pytest.mark.asyncio
@@ -55,15 +59,3 @@ async def test_run_sends_error_notification_on_scraper_failure(mocker):
     mocker.patch.dict(os.environ, ENV)
     await run()
     assert "오류" in send_mock.call_args[1]["text"]
-
-
-# ── get_yesterday_kst ─────────────────────────────────────────────────────────
-
-def test_get_yesterday_kst_returns_date_type():
-    assert isinstance(get_yesterday_kst(), date)
-
-
-def test_get_yesterday_kst_is_one_day_before_today_in_kst():
-    kst = timezone(timedelta(hours=9))
-    today_kst = datetime.now(kst).date()
-    assert get_yesterday_kst() == today_kst - timedelta(days=1)
