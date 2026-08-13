@@ -10,6 +10,14 @@ GitHub Actions 스케줄러(`UTC 21:30`, 지연 감안 시 실제 실행 **KST 0
 2. [K-StartUp](https://www.k-startup.go.kr) 공고 목록을 Playwright로 순회하며 **전날** 등록일자 항목 수집
 3. 수집된 공고를 텔레그램 봇으로 전송
 
+## 동작 화면
+### 공고 수신 화면
+![alt text](resources/image.png)
+
+### 에러 수신 화면
+![alt text](resources/image-1.png)
+
+
 ## 프로젝트 구조
 
 ```
